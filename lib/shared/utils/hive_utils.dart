@@ -1,9 +1,27 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:template_app/shared/constants/constants.dart';
+
+final settingsBoxProvider = Provider<Box>((ref) {
+  throw UnimplementedError();
+});
+
+final hiveUtilsProvider = Provider<HiveUtils>((ref) {
+  final _hive = ref.watch(settingsBoxProvider);
+  return HiveUtils(box: _hive);
+});
 
 class HiveUtils {
-  bool isDartModeEnabled() {
-    Box<bool> box = Hive.box(HiveConfig.SETTINGS_BOX);
-    return box.get(HiveConfig.DARK_MODE_ENABLED, defaultValue: false) ?? false;
+  HiveUtils({
+    required this.box,
+  });
+
+  final Box box;
+
+  bool isDarkModeEnabled() {
+    return box.get('isDarkModeEnabled', defaultValue: false);
+  }
+
+  Future<void> setDarkModeEnabled(bool value) async {
+    return await box.put('isDarkModeEnabled', value);
   }
 }

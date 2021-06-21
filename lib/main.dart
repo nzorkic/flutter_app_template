@@ -3,11 +3,14 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:template_app/shared/config/theme.dart';
 import 'package:template_app/shared/constants/constants.dart';
+import 'package:template_app/shared/providers/theme_provider.dart';
+import 'package:template_app/shared/utils/hive_utils.dart';
+import 'package:template_app/shared/utils/locale_utils.dart';
 
-import 'shared/utils/hive_utils.dart';
+import 'shared/router/app_router.gr.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,76 +19,41 @@ void main() async {
     await FlutterDisplayMode.setHighRefreshRate();
   }
   await Hive.initFlutter();
-  await Hive.openBox(HiveConfig.SETTINGS_BOX);
+  Box settingsBox = await Hive.openBox(HiveBoxes.SETTINGS_BOX);
   runApp(
-    EasyLocalization(
-        path: 'assets/translations',
-        supportedLocales: const [
-          Locale('en'),
-          Locale('rs'),
-        ],
-        fallbackLocale: const Locale('en'),
-        useFallbackTranslations: true,
-        child: MyApp()),
+    ProviderScope(
+      overrides: [
+        settingsBoxProvider.overrideWithValue(settingsBox),
+      ],
+      child: EasyLocalization(
+          path: Locales.PATH,
+          supportedLocales:
+              LocaleUtils.getLocaleCodes().map((lang) => Locale(lang)).toList(),
+          useFallbackTranslations: true,
+          fallbackLocale: const Locale(Locales.FALLBACK_LANGUAGE),
+          child: MyApp()),
+    ),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<Box>(
-      valueListenable: Hive.box(HiveConfig.SETTINGS_BOX).listenable(),
-      builder: (context, box, widget) {
-        bool darkModeEnabled =
-            box.get(HiveConfig.DARK_MODE_ENABLED, defaultValue: false);
-
-        return MaterialApp(
-          title: 'App Template',
-          darkTheme: AppThemes.darkTheme,
-          theme: AppThemes.lightTheme,
-          themeMode: darkModeEnabled ? ThemeMode.dark : ThemeMode.light,
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          home: Scaffold(
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/bird.png',
-                    width: 350,
-                    height: 150,
-                  ),
-                  Divider(),
-                  Text(
-                    'greeting'.tr(),
-                    style: TextStyle(
-                      fontSize: 18.0,
-                    ),
-                  ),
-                  Switch(
-                    value: box.get(HiveConfig.DARK_MODE_ENABLED,
-                        defaultValue: false),
-                    onChanged: (val) {
-                      box.put(HiveConfig.DARK_MODE_ENABLED, val);
-                    },
-                  ),
-                  // Switch(
-                  //   value: box.get(HiveConfig.CHANGE_LANGUAGE,
-                  //       defaultValue: LocaleConfig.FALLBACK_LANGUAGE),
-                  //   onChanged: (_) {
-                  //     box.put(HiveConfig.CHANGE_LANGUAGE, 'rs');
-                  //   },
-                  // ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
+  Widget build(BuildContext context, ScopedReader watch) {
+    final bool _appThemeState = watch(appThemeStateProvider);
+    final _appRouter = AppRouter();
+    print("Building Main!!!");
+    return MaterialApp.router(
+      theme: context
+          .read(appThemeProvider)
+          .getAppThemedata(context, _appThemeState),
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      //locale: Locale(LocaleUtils.getCurrentLocaleCode()),
+      locale: context.locale,
+      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: _appRouter.defaultRouteParser(),
+      builder: (context, router) => router!,
     );
   }
 }
