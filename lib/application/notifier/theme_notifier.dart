@@ -4,21 +4,21 @@ import 'package:template_app/providers.dart';
 import 'package:template_app/shared/constants/constants.dart';
 
 class AppThemeNotifier extends StateNotifier<bool> {
-  AppThemeNotifier(this.defaultDarkModeValue) : super(defaultDarkModeValue);
+  AppThemeNotifier(this.isDarkTheme) : super(isDarkTheme);
 
-  final bool defaultDarkModeValue;
+  final bool isDarkTheme;
 
   toggleAppTheme(BuildContext context) {
-    final _isDarkModeEnabled = context
+    final _isDarkThemeEnabled = context
         .read(hiveUtilsProvider)
-        .getBoolValue(HiveKeys.DARK_MODE_ENABLED);
-    final _toggleValue = !_isDarkModeEnabled;
+        .getBoolValue(HiveKeys.DARK_THEME_ENABLED);
+    final _toggleValue = !_isDarkThemeEnabled;
 
     context
         .read(
           hiveUtilsProvider,
         )
-        .setBoolValue(HiveKeys.DARK_MODE_ENABLED, _toggleValue)
+        .setBoolValue(HiveKeys.DARK_THEME_ENABLED, _toggleValue)
         .whenComplete(
           () => {
             state = _toggleValue,

@@ -22,6 +22,6 @@ final hiveUtilsProvider = Provider<HiveUtils>((ref) {
 final appThemeStateProvider =
     StateNotifierProvider<AppThemeNotifier, bool>((ref) {
   final _isDarkModeEnabled =
-      ref.read(hiveUtilsProvider).getBoolValue(HiveKeys.DARK_MODE_ENABLED);
+      ref.read(hiveUtilsProvider).getBoolValue(HiveKeys.DARK_THEME_ENABLED);
   return AppThemeNotifier(_isDarkModeEnabled);
 });
