@@ -41,7 +41,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final bool _appThemeState = watch(appThemeStateProvider);
-    final _appRouter = AppRouter();
+    // final _appRouter = AppRouter();
     return MaterialApp(
       theme: context
           .read(appThemeProvider)
@@ -54,7 +54,7 @@ class MyApp extends ConsumerWidget {
       // routerDelegate: _appRouter.delegate(),
       // routeInformationParser: _appRouter.defaultRouteParser(),
       home: HomeScreen(),
-      builder: (context, router) => router!,
+      // builder: (context, router) => router!,
     );
   }
 }

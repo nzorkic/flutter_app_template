@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:template_app/shared/providers/theme_provider.dart';
 import 'package:template_app/shared/utils/locale_utils.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:template_app/ui/widgets/settings_tile.dart';
 
 class ConfigurationScreen extends StatelessWidget {
   const ConfigurationScreen({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class ConfigurationScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: Text(tr('settings_page')),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back),
           onTap: () => Navigator.pop(context),
@@ -21,9 +22,9 @@ class ConfigurationScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          ListTile(
-            leading: Text("Dark Mode"),
-            trailing: Consumer(builder: (context, watch, child) {
+          SettingTile(
+            leadingText: tr('dark_mode'),
+            trailingWidget: Consumer(builder: (context, watch, child) {
               final bool _isDarkMode = watch(appThemeStateProvider);
               return Row(
                 mainAxisSize: MainAxisSize.min,
@@ -42,9 +43,9 @@ class ConfigurationScreen extends StatelessWidget {
               );
             }),
           ),
-          ListTile(
-            leading: Text("Language"),
-            trailing: DropdownButton(
+          SettingTile(
+            leadingText: tr('language'),
+            trailingWidget: DropdownButton(
               value: LocaleUtils.getCurrentLocaleName(),
               icon: Icon(Icons.arrow_downward),
               items: LocaleUtils.getLocaleNames().map(
@@ -56,12 +57,11 @@ class ConfigurationScreen extends StatelessWidget {
                 },
               ).toList(),
               onChanged: (val) {
-                // context.locale = Locale(
-                //     LocaleUtils.getLocaleCodeForName(val.toString()));
-                //box.put(HiveKeys.CURRENT_LANGUAGE, val);
+                context.setLocale(
+                    Locale(LocaleUtils.getLocaleCodeForName(val.toString())));
               },
             ),
-          ),
+          )
         ],
       ),
     );
