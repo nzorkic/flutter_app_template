@@ -16,24 +16,35 @@ class ConfigurationScreen extends StatelessWidget {
         title: Text('Settings'),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back),
-          onTap: () => context.router.pop(),
+          onTap: () => Navigator.pop(context),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Switch(
-              value: _appThemeStateProvider.state,
-              onChanged: (val) {
-                _appThemeStateProvider.toggleAppTheme(context);
-              },
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            DropdownButton(
+      body: Column(
+        children: [
+          ListTile(
+            leading: Text("Dark Mode"),
+            trailing: Consumer(builder: (context, watch, child) {
+              final bool _isDarkMode = watch(appThemeStateProvider);
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    _isDarkMode ? Icons.dark_mode : Icons.light_mode,
+                    color: Colors.yellow[700],
+                  ),
+                  Switch(
+                    value: _isDarkMode,
+                    onChanged: (val) {
+                      _appThemeStateProvider.toggleAppTheme(context);
+                    },
+                  ),
+                ],
+              );
+            }),
+          ),
+          ListTile(
+            leading: Text("Language"),
+            trailing: DropdownButton(
               value: LocaleUtils.getCurrentLocaleName(),
               icon: Icon(Icons.arrow_downward),
               items: LocaleUtils.getLocaleNames().map(
@@ -50,8 +61,8 @@ class ConfigurationScreen extends StatelessWidget {
                 //box.put(HiveKeys.CURRENT_LANGUAGE, val);
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

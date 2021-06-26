@@ -9,6 +9,7 @@ import 'package:template_app/shared/constants/constants.dart';
 import 'package:template_app/shared/providers/theme_provider.dart';
 import 'package:template_app/shared/utils/hive_utils.dart';
 import 'package:template_app/shared/utils/locale_utils.dart';
+import 'package:template_app/ui/screens/home_screen.dart';
 
 import 'shared/router/app_router.gr.dart';
 
@@ -41,8 +42,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final bool _appThemeState = watch(appThemeStateProvider);
     final _appRouter = AppRouter();
-    print("Building Main!!!");
-    return MaterialApp.router(
+    return MaterialApp(
       theme: context
           .read(appThemeProvider)
           .getAppThemedata(context, _appThemeState),
@@ -51,8 +51,9 @@ class MyApp extends ConsumerWidget {
       supportedLocales: context.supportedLocales,
       //locale: Locale(LocaleUtils.getCurrentLocaleCode()),
       locale: context.locale,
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
+      // routerDelegate: _appRouter.delegate(),
+      // routeInformationParser: _appRouter.defaultRouteParser(),
+      home: HomeScreen(),
       builder: (context, router) => router!,
     );
   }

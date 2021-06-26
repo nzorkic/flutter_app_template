@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:template_app/shared/router/app_router.gr.dart';
+import 'package:template_app/ui/screens/config_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,9 +19,13 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.only(right: 12.0),
             child: GestureDetector(
               child: Icon(Icons.settings),
-              onTap: () => context.router.push(
-                ConfigurationRoute(),
-              ),
+              // onTap: () => context.router.push(
+              //   ConfigurationRoute(),
+              // ),
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => (ConfigurationScreen()))),
             ),
           ),
         ],
