@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:template_app/application/rs_delegate.dart';
 import 'package:template_app/providers.dart';
 import 'package:template_app/shared/constants/constants.dart';
 import 'package:template_app/application/theme.dart';
@@ -45,7 +46,10 @@ class MyApp extends ConsumerWidget {
           .read(appThemeProvider)
           .getAppThemeData(context, _appThemeState),
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: context.localizationDelegates,
+      localizationsDelegates: [
+        ...context.localizationDelegates,
+        MaterialLocalizationRsDelegate()
+      ],
       supportedLocales: context.supportedLocales,
       //locale: Locale(LocaleUtils.getCurrentLocaleCode()),
       locale: context.locale,

@@ -15,7 +15,7 @@ class HiveKeys {
 class Locales {
   static const Map<String, String> LOCALES = {
     'en': 'English',
-    'es': 'Español',
+    'rs': 'Srpski',
   };
   static const String FALLBACK_LANGUAGE = 'en';
   static const String PATH = 'assets/translations';
