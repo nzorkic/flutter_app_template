@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:template_app/application/notifier/locale_notifier.dart';
 import 'package:template_app/application/notifier/theme_notifier.dart';
 import 'package:template_app/shared/constants/constants.dart';
 import 'package:template_app/shared/utils/hive_utils.dart';
@@ -24,4 +25,11 @@ final appThemeStateProvider =
   final _isDarkModeEnabled =
       ref.read(hiveUtilsProvider).getBoolValue(HiveKeys.DARK_THEME_ENABLED);
   return AppThemeNotifier(_isDarkModeEnabled);
+});
+
+final localeStateProvider =
+    StateNotifierProvider<LocaleNotifier, String>((ref) {
+  final _currentLocale =
+      ref.read(hiveUtilsProvider).getStringValue(HiveKeys.CURRENT_LANGUAGE);
+  return LocaleNotifier(_currentLocale);
 });

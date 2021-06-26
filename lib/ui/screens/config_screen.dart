@@ -11,6 +11,7 @@ class ConfigurationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _appThemeStateProvider = context.read(appThemeStateProvider.notifier);
+    final _localeStateProvider = context.read(localeStateProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -45,20 +46,25 @@ class ConfigurationScreen extends StatelessWidget {
           ),
           SettingTile(
             leadingText: tr('language'),
-            trailingWidget: DropdownButton(
-              value: LocaleUtils.getCurrentLocaleName(),
-              icon: Icon(Icons.arrow_downward),
-              items: LocaleUtils.getLocaleNames().map(
-                (String lang) {
-                  return DropdownMenuItem(
-                    child: Text(lang),
-                    value: lang,
-                  );
-                },
-              ).toList(),
-              onChanged: (val) {
-                context.setLocale(
-                    Locale(LocaleUtils.getLocaleCodeForName(val.toString())));
+            trailingWidget: Consumer(
+              builder: (context, watch, child) {
+                final String _currentLocale = watch(localeStateProvider);
+
+                return DropdownButton(
+                  value: _currentLocale,
+                  icon: Icon(Icons.arrow_downward),
+                  items: LocaleUtils.getLocaleNames().map(
+                    (String lang) {
+                      return DropdownMenuItem(
+                        child: Text(lang),
+                        value: lang,
+                      );
+                    },
+                  ).toList(),
+                  onChanged: (val) {
+                    _localeStateProvider.changeLocale(context, val.toString());
+                  },
+                );
               },
             ),
           )
