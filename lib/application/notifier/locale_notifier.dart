@@ -18,7 +18,7 @@ class LocaleNotifier extends StateNotifier<String> {
         .whenComplete(
           () => {
             context.setLocale(Locale(_localeCode)),
-            state = localeName,
+            state = _localeCode,
           },
         );
   }
