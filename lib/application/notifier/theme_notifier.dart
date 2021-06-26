@@ -15,14 +15,8 @@ class AppThemeNotifier extends StateNotifier<bool> {
     final _toggleValue = !_isDarkThemeEnabled;
 
     context
-        .read(
-          hiveUtilsProvider,
-        )
+        .read(hiveUtilsProvider)
         .setBoolValue(HiveKeys.DARK_THEME_ENABLED, _toggleValue)
-        .whenComplete(
-          () => {
-            state = _toggleValue,
-          },
-        );
+        .whenComplete(() => state = _toggleValue);
   }
 }
