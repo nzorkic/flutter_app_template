@@ -1,14 +1,20 @@
+// Dart imports:
 import 'dart:io';
 
-import 'package:easy_localization/easy_localization.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+// Project imports:
 import 'package:template_app/application/rs_delegate.dart';
 import 'package:template_app/providers.dart';
-import 'package:template_app/shared/constants/constants.dart';
-import 'package:template_app/application/theme.dart';
+import 'package:template_app/shared/constants/hive.dart';
+import 'package:template_app/shared/constants/settings.dart';
 import 'package:template_app/shared/utils/locale_utils.dart';
 import 'package:template_app/ui/screens/home_screen.dart';
 

@@ -1,5 +1,9 @@
+// Package imports:
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:template_app/shared/constants/constants.dart';
+
+// Project imports:
+import 'package:template_app/shared/constants/hive.dart';
+import 'package:template_app/shared/constants/settings.dart';
 
 class LocaleUtils {
   LocaleUtils._();

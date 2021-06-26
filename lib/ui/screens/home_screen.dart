@@ -1,9 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
-import 'package:auto_route/auto_route.dart';
-
+// Package imports:
 import 'package:easy_localization/easy_localization.dart';
-import 'package:template_app/shared/router/app_router.gr.dart';
+
+// Project imports:
 import 'package:template_app/ui/screens/config_screen.dart';
 
 class HomeScreen extends StatelessWidget {

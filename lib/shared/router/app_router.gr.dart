@@ -4,8 +4,13 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:auto_route/auto_route.dart' as _i1;
+// Flutter imports:
 import 'package:flutter/material.dart' as _i2;
+
+// Package imports:
+import 'package:auto_route/auto_route.dart' as _i1;
+
+// Project imports:
 import 'package:template_app/ui/screens/config_screen.dart' as _i4;
 import 'package:template_app/ui/screens/home_screen.dart' as _i3;
 

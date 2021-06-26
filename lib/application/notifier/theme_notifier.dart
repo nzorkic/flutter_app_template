@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+// Project imports:
 import 'package:template_app/providers.dart';
-import 'package:template_app/shared/constants/constants.dart';
+import 'package:template_app/shared/constants/hive.dart';
 
 class AppThemeNotifier extends StateNotifier<bool> {
   AppThemeNotifier(this.isDarkTheme) : super(isDarkTheme);

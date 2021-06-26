@@ -1,5 +1,8 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:template_app/shared/constants/constants.dart';
+
+// Project imports:
+import 'package:template_app/shared/constants/settings.dart';
 
 class AppTheme {
   /// Colors from Tailwind CSS
@@ -43,7 +46,7 @@ class AppTheme {
     cardColor: Colors.white,
     bottomAppBarColor: Colors.white,
     dividerColor: const Color(0x1C000000),
-    fontFamily: Config.MAIN_FONT,
+    fontFamily: Config.DEFAULT_FONT,
     textTheme: TextTheme(
       headline1: TextStyle(
         color: textSwatch.shade700,
@@ -95,7 +98,7 @@ class AppTheme {
     cardColor: const Color(0xFF2f2f34),
     bottomAppBarColor: const Color(0xFF35353a),
     dividerColor: const Color(0x1CFFFFFF),
-    textTheme: _lightTheme.textTheme.apply(fontFamily: Config.MAIN_FONT),
+    textTheme: _lightTheme.textTheme.apply(fontFamily: Config.DEFAULT_FONT),
   );
 
   ThemeData getAppThemeData(BuildContext context, bool isDarkModeEnabled) {
