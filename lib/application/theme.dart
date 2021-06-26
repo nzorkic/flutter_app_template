@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:template_app/shared/constants/constants.dart';
 
-class AppThemes {
+class AppTheme {
   /// Colors from Tailwind CSS
   ///
   /// https://tailwindcss.com/docs/customizing-colors
@@ -35,7 +35,7 @@ class AppThemes {
     900: Color(0xFF111827),
   });
 
-  static final lightTheme = ThemeData(
+  static final _lightTheme = ThemeData(
     primarySwatch: primarySwatch,
     brightness: Brightness.light,
     scaffoldBackgroundColor: textSwatch.shade100,
@@ -88,13 +88,20 @@ class AppThemes {
     ),
   );
 
-  static final darkTheme = lightTheme.copyWith(
+  static final _darkTheme = _lightTheme.copyWith(
     brightness: Brightness.dark,
     scaffoldBackgroundColor: const Color(0xFF24242a),
     backgroundColor: const Color(0xFF24242a),
     cardColor: const Color(0xFF2f2f34),
     bottomAppBarColor: const Color(0xFF35353a),
     dividerColor: const Color(0x1CFFFFFF),
-    textTheme: lightTheme.textTheme.apply(fontFamily: Config.MAIN_FONT),
+    textTheme: _lightTheme.textTheme.apply(fontFamily: Config.MAIN_FONT),
   );
+
+  ThemeData getAppThemeData(BuildContext context, bool isDarkModeEnabled) {
+    return isDarkModeEnabled ? _darkTheme : _lightTheme;
+  }
 }
+/* AppTheme Notifier */
+
+

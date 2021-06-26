@@ -5,13 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:template_app/providers.dart';
 import 'package:template_app/shared/constants/constants.dart';
-import 'package:template_app/shared/providers/theme_provider.dart';
-import 'package:template_app/shared/utils/hive_utils.dart';
+import 'package:template_app/application/theme.dart';
 import 'package:template_app/shared/utils/locale_utils.dart';
 import 'package:template_app/ui/screens/home_screen.dart';
-
-import 'shared/router/app_router.gr.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,7 +43,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       theme: context
           .read(appThemeProvider)
-          .getAppThemedata(context, _appThemeState),
+          .getAppThemeData(context, _appThemeState),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

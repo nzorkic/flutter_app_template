@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:template_app/shared/providers/theme_provider.dart';
+import 'package:template_app/providers.dart';
 import 'package:template_app/shared/utils/locale_utils.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
