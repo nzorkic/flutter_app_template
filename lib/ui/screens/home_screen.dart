@@ -8,6 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 // Project imports:
 import 'package:template_app/application/logging/log_pens.dart';
 import 'package:template_app/application/logging/logger_types.dart';
+import 'package:template_app/application/resources/assets.dart';
 import 'package:template_app/shared/router/app_router.gr.dart';
 
 class HomeScreen extends StatelessWidget with UiLogger {
@@ -35,7 +36,7 @@ class HomeScreen extends StatelessWidget with UiLogger {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/bird.png',
+              Assets.bird,
               width: 350,
               height: 150,
             ),
