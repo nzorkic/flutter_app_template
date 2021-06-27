@@ -6,13 +6,16 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
+import 'package:template_app/application/logging/log_pens.dart';
+import 'package:template_app/application/logging/logger_types.dart';
 import 'package:template_app/shared/router/app_router.gr.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget with UiLogger {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    logger.info(penInfo('Build started...'));
     return Scaffold(
       appBar: AppBar(
         title: Text(tr('homepage_title')),

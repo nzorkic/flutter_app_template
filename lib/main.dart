@@ -11,6 +11,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 // Project imports:
+import 'package:template_app/application/init_log.dart';
+import 'package:template_app/application/logging/log_pens.dart';
+import 'package:template_app/application/logging/logger_types.dart';
 import 'package:template_app/application/rs_delegate.dart';
 import 'package:template_app/providers.dart';
 import 'package:template_app/shared/constants/hive.dart';
@@ -20,12 +23,15 @@ import 'package:template_app/shared/utils/locale_utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  EasyLocalization.logger.enableBuildModes = [];
   await EasyLocalization.ensureInitialized();
   if (Platform.isAndroid) {
     await FlutterDisplayMode.setHighRefreshRate();
   }
   await Hive.initFlutter();
   Box settingsBox = await Hive.openBox(HiveBoxes.SETTINGS_BOX);
+  initLog();
+  logFunction('main').info(penInfo("initialization completed!"));
   runApp(
     ProviderScope(
       overrides: [

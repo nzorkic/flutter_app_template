@@ -7,16 +7,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Project imports:
+import 'package:template_app/application/logging/log_pens.dart';
+import 'package:template_app/application/logging/logger_types.dart';
 import 'package:template_app/providers.dart';
 import 'package:template_app/shared/constants/settings.dart';
 import 'package:template_app/shared/utils/locale_utils.dart';
 import 'package:template_app/ui/widgets/settings_tile.dart';
 
-class SettingsScreen extends ConsumerWidget {
+class SettingsScreen extends ConsumerWidget with UiLogger {
   const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
+    logger.info(penInfo('Build started...'));
     final _appThemeStateProvider = context.read(appThemeStateProvider.notifier);
     final _localeStateProvider = context.read(localeStateProvider.notifier);
 

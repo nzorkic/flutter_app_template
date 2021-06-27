@@ -30,7 +30,7 @@ dependencies:
   # cloud_firestore: ^2.2.2
 
   # local database
-  # hive: ^2.0.4
+  hive: ^2.0.4
   hive_flutter: ^1.1.0
 
   # localization
@@ -41,6 +41,12 @@ dependencies:
 
   # http client
   # dio: ^4.0.0
+
+  #logging
+  logging: ^1.0.1
+  ansicolor: ^2.0.1
+  logging_appenders: ^1.0.0
+  simple_logger: ^1.8.1
 
   # routing
   auto_route: ^2.2.0
