@@ -7,6 +7,7 @@ import 'package:template_app/application/notifier/locale_notifier.dart';
 import 'package:template_app/application/notifier/theme_notifier.dart';
 import 'package:template_app/application/theme.dart';
 import 'package:template_app/shared/constants/hive.dart';
+import 'package:template_app/shared/constants/settings.dart';
 import 'package:template_app/shared/utils/hive_utils.dart';
 
 final settingsBoxProvider = Provider<Box>((ref) {
@@ -31,7 +32,8 @@ final appThemeStateProvider =
 
 final localeStateProvider =
     StateNotifierProvider<LocaleNotifier, String>((ref) {
-  final _currentLocale =
-      ref.read(hiveUtilsProvider).getStringValue(HiveKeys.CURRENT_LANGUAGE);
+  final _currentLocale = ref.read(hiveUtilsProvider).getStringValue(
+      HiveKeys.CURRENT_LANGUAGE,
+      defaultValue: Locales.FALLBACK_LANGUAGE);
   return LocaleNotifier(_currentLocale);
 });

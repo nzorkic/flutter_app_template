@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,65 +12,45 @@ import 'package:template_app/shared/constants/settings.dart';
 import 'package:template_app/shared/utils/locale_utils.dart';
 import 'package:template_app/ui/widgets/settings_tile.dart';
 
-class ConfigurationScreen extends StatelessWidget {
+class ConfigurationScreen extends ConsumerWidget {
   const ConfigurationScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
     final _appThemeStateProvider = context.read(appThemeStateProvider.notifier);
     final _localeStateProvider = context.read(localeStateProvider.notifier);
 
-    var _themeSwitch = Container(
-      width: 110,
-      height: 48,
-      alignment: Alignment.centerRight,
-      child: Consumer(
-        builder: (context, watch, child) {
-          final bool _isDarkMode = watch(appThemeStateProvider);
-          return Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                _isDarkMode ? Icons.dark_mode : Icons.light_mode,
-                color: Colors.yellow[700],
-              ),
-              Switch(
-                value: _isDarkMode,
-                onChanged: (val) {
-                  _appThemeStateProvider.toggleAppTheme(context);
-                },
-              ),
-            ],
-          );
-        },
-      ),
+    final bool _isDarkMode = watch(appThemeStateProvider);
+
+    var _themeSwitch = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(
+          _isDarkMode ? Icons.dark_mode : Icons.light_mode,
+          color: Colors.yellow[700],
+        ),
+        Switch(
+          value: _isDarkMode,
+          onChanged: (val) => _appThemeStateProvider.toggleAppTheme(context),
+        ),
+      ],
     );
 
-    var _localeSelector = Container(
-      width: 110,
-      height: 48,
-      alignment: Alignment.centerRight,
-      child: Consumer(
-        builder: (context, watch, child) {
-          final String _currentLocale = watch(localeStateProvider);
+    final String _currentLocale = watch(localeStateProvider);
 
-          return DropdownButton(
-            value: Locales.LOCALES[_currentLocale],
-            icon: Icon(Icons.arrow_downward),
-            items: LocaleUtils.getLocaleNames().map(
-              (String lang) {
-                return DropdownMenuItem(
-                  child: Text(lang),
-                  value: lang,
-                );
-              },
-            ).toList(),
-            onChanged: (val) {
-              _localeStateProvider.changeLocale(context, val.toString());
-            },
+    var _localeSelector = DropdownButton(
+      value: Locales.LOCALES[_currentLocale],
+      icon: Icon(Icons.arrow_downward),
+      items: LocaleUtils.getLocaleNames().map(
+        (String lang) {
+          return DropdownMenuItem(
+            child: Text(lang),
+            value: lang,
           );
         },
-      ),
+      ).toList(),
+      onChanged: (val) =>
+          _localeStateProvider.changeLocale(context, val.toString(),),
     );
 
     return Scaffold(
@@ -77,7 +58,7 @@ class ConfigurationScreen extends StatelessWidget {
         title: Text(tr('settings_page')),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back),
-          onTap: () => Navigator.pop(context),
+          onTap: () => context.popRoute(),
         ),
       ),
       body: Column(

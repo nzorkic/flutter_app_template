@@ -15,8 +15,8 @@ import 'package:template_app/application/rs_delegate.dart';
 import 'package:template_app/providers.dart';
 import 'package:template_app/shared/constants/hive.dart';
 import 'package:template_app/shared/constants/settings.dart';
+import 'package:template_app/shared/router/app_router.gr.dart';
 import 'package:template_app/shared/utils/locale_utils.dart';
-import 'package:template_app/ui/screens/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,22 +32,25 @@ void main() async {
         settingsBoxProvider.overrideWithValue(settingsBox),
       ],
       child: EasyLocalization(
-          path: Locales.PATH,
-          supportedLocales:
-              LocaleUtils.getLocaleCodes().map((lang) => Locale(lang)).toList(),
-          useFallbackTranslations: true,
-          fallbackLocale: const Locale(Locales.FALLBACK_LANGUAGE),
-          child: MyApp()),
+        path: Locales.PATH,
+        supportedLocales:
+            LocaleUtils.getLocaleCodes().map((lang) => Locale(lang)).toList(),
+        useFallbackTranslations: true,
+        fallbackLocale: const Locale(Locales.FALLBACK_LANGUAGE),
+        child: MyApp(),
+      ),
     ),
   );
 }
 
 class MyApp extends ConsumerWidget {
+  final _appRouter = AppRouter();
+
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final bool _appThemeState = watch(appThemeStateProvider);
-    // final _appRouter = AppRouter();
-    return MaterialApp(
+
+    return MaterialApp.router(
       theme: context
           .read(appThemeProvider)
           .getAppThemeData(context, _appThemeState),
@@ -57,12 +60,9 @@ class MyApp extends ConsumerWidget {
         MaterialLocalizationRsDelegate()
       ],
       supportedLocales: context.supportedLocales,
-      //locale: Locale(LocaleUtils.getCurrentLocaleCode()),
       locale: context.locale,
-      // routerDelegate: _appRouter.delegate(),
-      // routeInformationParser: _appRouter.defaultRouteParser(),
-      home: HomeScreen(),
-      // builder: (context, router) => router!,
+      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: _appRouter.defaultRouteParser(),
     );
   }
 }

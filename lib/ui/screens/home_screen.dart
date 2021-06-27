@@ -2,10 +2,11 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 // Project imports:
-import 'package:template_app/ui/screens/config_screen.dart';
+import 'package:template_app/shared/router/app_router.gr.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,13 +21,7 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.only(right: 12.0),
             child: GestureDetector(
               child: Icon(Icons.settings),
-              // onTap: () => context.router.push(
-              //   ConfigurationRoute(),
-              // ),
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => (ConfigurationScreen()))),
+              onTap: () => context.pushRoute(ConfigurationRoute()),
             ),
           ),
         ],
@@ -41,14 +36,10 @@ class HomeScreen extends StatelessWidget {
               width: 350,
               height: 150,
             ),
-            SizedBox(
-              height: 30,
-            ),
+            SizedBox(height: 30),
             Text(
               tr('greeting'),
-              style: TextStyle(
-                fontSize: 18.0,
-              ),
+              style: TextStyle(fontSize: 18.0),
             )
           ],
         ),
