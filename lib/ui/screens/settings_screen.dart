@@ -12,8 +12,8 @@ import 'package:template_app/shared/constants/settings.dart';
 import 'package:template_app/shared/utils/locale_utils.dart';
 import 'package:template_app/ui/widgets/settings_tile.dart';
 
-class ConfigurationScreen extends ConsumerWidget {
-  const ConfigurationScreen({Key? key}) : super(key: key);
+class SettingsScreen extends ConsumerWidget {
+  const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -55,7 +55,7 @@ class ConfigurationScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(tr('settings_page')),
+        title: Text(tr('settings_page_title')),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back),
           onTap: () => context.popRoute(),

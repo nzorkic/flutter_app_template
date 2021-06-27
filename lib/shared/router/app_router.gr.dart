@@ -11,8 +11,8 @@ import 'package:flutter/material.dart' as _i2;
 import 'package:auto_route/auto_route.dart' as _i1;
 
 // Project imports:
-import 'package:template_app/ui/screens/config_screen.dart' as _i4;
 import 'package:template_app/ui/screens/home_screen.dart' as _i3;
+import 'package:template_app/ui/screens/settings_screen.dart' as _i4;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -25,17 +25,17 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i3.HomeScreen();
         }),
-    ConfigurationRoute.name: (routeData) => _i1.AdaptivePage<dynamic>(
+    SettingsRoute.name: (routeData) => _i1.AdaptivePage<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i4.ConfigurationScreen();
+          return const _i4.SettingsScreen();
         })
   };
 
   @override
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(HomeRoute.name, path: '/'),
-        _i1.RouteConfig(ConfigurationRoute.name, path: '/configuration-screen')
+        _i1.RouteConfig(SettingsRoute.name, path: '/settings-screen')
       ];
 }
 
@@ -45,8 +45,8 @@ class HomeRoute extends _i1.PageRouteInfo {
   static const String name = 'HomeRoute';
 }
 
-class ConfigurationRoute extends _i1.PageRouteInfo {
-  const ConfigurationRoute() : super(name, path: '/configuration-screen');
+class SettingsRoute extends _i1.PageRouteInfo {
+  const SettingsRoute() : super(name, path: '/settings-screen');
 
-  static const String name = 'ConfigurationRoute';
+  static const String name = 'SettingsRoute';
 }

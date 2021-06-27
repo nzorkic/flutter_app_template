@@ -15,13 +15,13 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(tr('homepage')),
+        title: Text(tr('homepage_title')),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
             child: GestureDetector(
               child: Icon(Icons.settings),
-              onTap: () => context.pushRoute(ConfigurationRoute()),
+              onTap: () => context.pushRoute(SettingsRoute()),
             ),
           ),
         ],

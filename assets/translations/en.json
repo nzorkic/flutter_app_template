@@ -1,8 +1,8 @@
 {
-    "homepage": "Home Page",
+    "homepage_title": "Home Page",
     "greeting": "Hello! How are you today?",
 
-    "settings_page": "Settings",
+    "settings_page_title": "Settings",
     "dark_mode": "Dark Mode",
     "language": "Language"
 }

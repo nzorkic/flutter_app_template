@@ -1,8 +1,8 @@
 {
-    "homepage": "Početna Strana",
+    "homepage_title": "Početna Strana",
     "greeting": "Zdravo! Kako se osećate danas?",
 
-    "settings_page": "Podešavanja",
+    "settings_page_title": "Podešavanja",
     "dark_mode": "Mračna tema",
     "language": "Jezik"
 }
