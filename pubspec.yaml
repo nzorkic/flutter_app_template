@@ -45,7 +45,6 @@ dependencies:
   #logging
   logging: ^1.0.1
   ansicolor: ^2.0.1
-  logging_appenders: ^1.0.0
   simple_logger: ^1.8.1
 
   # routing
