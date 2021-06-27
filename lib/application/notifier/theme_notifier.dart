@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Project imports:
+import 'package:template_app/application/config/hive_constants.dart';
 import 'package:template_app/application/logging/log_pens.dart';
 import 'package:template_app/application/logging/logger_types.dart';
 import 'package:template_app/providers.dart';
-import 'package:template_app/shared/constants/hive.dart';
 
 class AppThemeNotifier extends StateNotifier<bool> with UtilityLogger {
   AppThemeNotifier(this.isDarkTheme) : super(isDarkTheme);

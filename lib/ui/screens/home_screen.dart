@@ -8,8 +8,8 @@ import 'package:easy_localization/easy_localization.dart';
 // Project imports:
 import 'package:template_app/application/logging/log_pens.dart';
 import 'package:template_app/application/logging/logger_types.dart';
+import 'package:template_app/application/navigation/app_router.gr.dart';
 import 'package:template_app/application/resources/assets.dart';
-import 'package:template_app/shared/router/app_router.gr.dart';
 
 class HomeScreen extends StatelessWidget with UiLogger {
   const HomeScreen({Key? key}) : super(key: key);

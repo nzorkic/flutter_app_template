@@ -11,15 +11,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 // Project imports:
+import 'package:template_app/application/config/app_settings.dart';
+import 'package:template_app/application/config/hive_constants.dart';
 import 'package:template_app/application/init_log.dart';
 import 'package:template_app/application/logging/log_pens.dart';
 import 'package:template_app/application/logging/logger_types.dart';
+import 'package:template_app/application/navigation/app_router.gr.dart';
 import 'package:template_app/application/rs_delegate.dart';
 import 'package:template_app/providers.dart';
-import 'package:template_app/shared/constants/hive.dart';
-import 'package:template_app/shared/constants/settings.dart';
-import 'package:template_app/shared/router/app_router.gr.dart';
-import 'package:template_app/shared/utils/locale_utils.dart';
+import 'package:template_app/utils/locale_utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,11 +38,11 @@ void main() async {
         settingsBoxProvider.overrideWithValue(settingsBox),
       ],
       child: EasyLocalization(
-        path: Locales.PATH,
+        path: Settings.TRANSLATIONS_PATH,
         supportedLocales:
             LocaleUtils.getLocaleCodes().map((lang) => Locale(lang)).toList(),
         useFallbackTranslations: true,
-        fallbackLocale: const Locale(Locales.FALLBACK_LANGUAGE),
+        fallbackLocale: const Locale(Settings.FALLBACK_LANGUAGE),
         child: MyApp(),
       ),
     ),

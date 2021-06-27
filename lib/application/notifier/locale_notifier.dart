@@ -6,11 +6,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Project imports:
+import 'package:template_app/application/config/hive_constants.dart';
 import 'package:template_app/application/logging/log_pens.dart';
 import 'package:template_app/application/logging/logger_types.dart';
 import 'package:template_app/providers.dart';
-import 'package:template_app/shared/constants/hive.dart';
-import 'package:template_app/shared/utils/locale_utils.dart';
+import 'package:template_app/utils/locale_utils.dart';
 
 class LocaleNotifier extends StateNotifier<String> with UtilityLogger {
   LocaleNotifier(this.currentLocale) : super(currentLocale);

@@ -7,12 +7,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Project imports:
+import 'package:template_app/application/config/app_settings.dart';
 import 'package:template_app/application/logging/log_pens.dart';
 import 'package:template_app/application/logging/logger_types.dart';
 import 'package:template_app/providers.dart';
-import 'package:template_app/shared/constants/settings.dart';
-import 'package:template_app/shared/utils/locale_utils.dart';
 import 'package:template_app/ui/widgets/settings_tile.dart';
+import 'package:template_app/utils/locale_utils.dart';
 
 class SettingsScreen extends ConsumerWidget with UiLogger {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -42,7 +42,7 @@ class SettingsScreen extends ConsumerWidget with UiLogger {
     final String _currentLocale = watch(localeStateProvider);
 
     var _localeSelector = DropdownButton(
-      value: Locales.LOCALES[_currentLocale],
+      value: Settings.LOCALES[_currentLocale],
       icon: Icon(Icons.arrow_downward),
       items: LocaleUtils.getLocaleNames().map(
         (String lang) {
