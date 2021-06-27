@@ -50,7 +50,7 @@ class SettingsScreen extends ConsumerWidget {
         },
       ).toList(),
       onChanged: (val) =>
-          _localeStateProvider.changeLocale(context, val.toString(),),
+          _localeStateProvider.changeLocale(context, val.toString()),
     );
 
     return Scaffold(
