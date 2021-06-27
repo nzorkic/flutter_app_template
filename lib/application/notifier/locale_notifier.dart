@@ -6,7 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Project imports:
-import 'package:template_app/application/config/hive_constants.dart';
+import 'package:template_app/application/config/storage_constants.dart';
 import 'package:template_app/application/logging/log_pens.dart';
 import 'package:template_app/application/logging/logger_types.dart';
 import 'package:template_app/providers.dart';
@@ -20,8 +20,8 @@ class LocaleNotifier extends StateNotifier<String> with UtilityLogger {
   changeLocale(BuildContext context, String localeName) {
     String _localeCode = LocaleUtils.getLocaleCodeForName(localeName);
     context
-        .read(hiveUtilsProvider)
-        .setStringValue(HiveKeys.CURRENT_LANGUAGE, _localeCode)
+        .read(storageUtilsProvider)
+        .setStringValue(StorageValues.CURRENT_LANGUAGE, _localeCode)
         .whenComplete(
           () => {
             context.setLocale(Locale(_localeCode)),

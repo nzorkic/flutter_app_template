@@ -1,5 +1,11 @@
-abstract class Settings {
-  Settings._();
+abstract class Constants {
+  const Constants._();
+
+  static const APPSTORE_APP_ID = '';
+  static const PLAYSTORE_APP_ID = '';
+
+  static const API_KEY = '';
+
   static const String DEFAULT_FONT = 'Poppins';
 
   static const Map<String, String> LOCALES = {

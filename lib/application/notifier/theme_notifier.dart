@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Project imports:
-import 'package:template_app/application/config/hive_constants.dart';
+import 'package:template_app/application/config/storage_constants.dart';
 import 'package:template_app/application/logging/log_pens.dart';
 import 'package:template_app/application/logging/logger_types.dart';
 import 'package:template_app/providers.dart';
@@ -17,13 +17,13 @@ class AppThemeNotifier extends StateNotifier<bool> with UtilityLogger {
 
   toggleAppTheme(BuildContext context) {
     final _isDarkThemeEnabled = context
-        .read(hiveUtilsProvider)
-        .getBoolValue(HiveKeys.DARK_THEME_ENABLED);
+        .read(storageUtilsProvider)
+        .getBoolValue(StorageValues.DARK_THEME_ENABLED);
     final _toggleValue = !_isDarkThemeEnabled;
 
     context
-        .read(hiveUtilsProvider)
-        .setBoolValue(HiveKeys.DARK_THEME_ENABLED, _toggleValue)
+        .read(storageUtilsProvider)
+        .setBoolValue(StorageValues.DARK_THEME_ENABLED, _toggleValue)
         .whenComplete(() => {
               state = _toggleValue,
               logger.info(penInfo(

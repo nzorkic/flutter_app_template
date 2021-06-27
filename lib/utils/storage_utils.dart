@@ -1,8 +1,8 @@
 // Package imports:
 import 'package:hive_flutter/hive_flutter.dart';
 
-class HiveUtils {
-  HiveUtils({
+class StorageUtils {
+  StorageUtils({
     required this.box,
   });
 
