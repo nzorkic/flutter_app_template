@@ -7,7 +7,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Project imports:
-import 'package:template_app/application/config/app_settings.dart';
+import 'package:template_app/application/config/app_constants.dart';
 import 'package:template_app/application/logging/log_pens.dart';
 import 'package:template_app/application/logging/logger_types.dart';
 import 'package:template_app/providers.dart';
@@ -42,8 +42,8 @@ class SettingsScreen extends ConsumerWidget with UiLogger {
     final String _currentLocale = watch(localeStateProvider);
 
     var _localeSelector = DropdownButton(
-      value: Settings.LOCALES[_currentLocale],
-      icon: Icon(Icons.arrow_downward),
+      value: Constants.LOCALES[_currentLocale],
+      icon: const Icon(Icons.arrow_downward),
       items: LocaleUtils.getLocaleNames().map(
         (String lang) {
           return DropdownMenuItem(
@@ -60,7 +60,7 @@ class SettingsScreen extends ConsumerWidget with UiLogger {
       appBar: AppBar(
         title: Text(tr('settings_page_title')),
         leading: GestureDetector(
-          child: Icon(Icons.arrow_back),
+          child: const Icon(Icons.arrow_back),
           onTap: () => context.popRoute(),
         ),
       ),

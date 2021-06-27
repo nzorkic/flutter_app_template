@@ -20,12 +20,15 @@ void initLog() {
 
     Logger.root.onRecord.listen((record) {
       if (record.error != null && record.stackTrace != null) {
+        // ignore: avoid_print
         print(
             '[${record.level.name}|${record.time}] | ${record.loggerName} >> ${record.message} << ERROR: ${record.error} | EXCEPTION: ${record.stackTrace}');
       } else if (record.error != null) {
+        // ignore: avoid_print
         print(
             '[${record.level.name}|${record.time}] | ${record.loggerName} >> ${record.message} << ERROR: ${record.error}');
       } else {
+        // ignore: avoid_print
         print(
             '[${record.level.name}|${record.time}] | ${record.loggerName} >> ${record.message} <<');
       }

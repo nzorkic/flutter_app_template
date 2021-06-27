@@ -31,7 +31,7 @@ void main() async {
   await Hive.initFlutter();
   Box settingsBox = await Hive.openBox(Storages.SETTINGS_STORAGE);
   initLog();
-  logFunction('main').info(penInfo("initialization completed!"));
+  logFunction('main').info(penInfo('initialization completed!'));
   runApp(
     ProviderScope(
       overrides: [
@@ -51,6 +51,8 @@ void main() async {
 
 class MyApp extends ConsumerWidget {
   final _appRouter = AppRouter();
+
+  MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {

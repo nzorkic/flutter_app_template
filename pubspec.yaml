@@ -38,6 +38,7 @@ dependencies:
 
   # state management
   flutter_riverpod: ^0.14.0+3
+  hooks_riverpod: ^0.14.0+4
 
   # http client
   # dio: ^4.0.0

@@ -24,8 +24,8 @@ class HomeScreen extends StatelessWidget with UiLogger {
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
             child: GestureDetector(
-              child: Icon(Icons.settings),
-              onTap: () => context.pushRoute(SettingsRoute()),
+              child: const Icon(Icons.settings),
+              onTap: () => context.pushRoute(const SettingsRoute()),
             ),
           ),
         ],
@@ -40,10 +40,10 @@ class HomeScreen extends StatelessWidget with UiLogger {
               width: 350,
               height: 150,
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Text(
               tr('greeting'),
-              style: TextStyle(fontSize: 18.0),
+              style: const TextStyle(fontSize: 18.0),
             )
           ],
         ),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class MaterialLocalizationRsDelegate
     extends LocalizationsDelegate<MaterialLocalizations> {
   @override
-  bool isSupported(Locale locale) => locale.languageCode == "rs";
+  bool isSupported(Locale locale) => locale.languageCode == 'rs';
 
   @override
   Future<MaterialLocalizations> load(Locale locale) async =>

@@ -1,0 +1,12 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - "lib/**/*.*.dart"
+    - "test/**/*.*.dart"
+
+linter:
+  rules:
+    sort_pub_dependencies: false
+    constant_identifier_names: false
+    prefer_single_quotes: true
