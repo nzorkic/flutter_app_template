@@ -10,3 +10,4 @@ linter:
     sort_pub_dependencies: false
     constant_identifier_names: false
     prefer_single_quotes: true
+    prefer_conditional_assignment: true
