@@ -44,10 +44,14 @@ class SettingsScreen extends ConsumerWidget with UiLogger {
     var _localeSelector = DropdownButton(
       value: Constants.LOCALES[_currentLocale],
       icon: const Icon(Icons.arrow_downward),
+      dropdownColor: Theme.of(context).backgroundColor,
       items: LocaleUtils.getLocaleNames().map(
         (String lang) {
           return DropdownMenuItem(
-            child: Text(lang),
+            child: Text(
+              lang,
+              style: TextStyle(color: Theme.of(context).textTheme.bodyText2!.color),
+            ),
             value: lang,
           );
         },

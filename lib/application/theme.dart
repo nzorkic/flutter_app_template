@@ -9,6 +9,8 @@ class AppTheme {
   ///
   /// https://tailwindcss.com/docs/customizing-colors
   static const int _primaryColor = 0xFF6366F1;
+  static const String _primaryFont = Constants.DEFAULT_FONT;
+
   static const MaterialColor primarySwatch =
       MaterialColor(_primaryColor, <int, Color>{
     50: Color(0xFFECEDFD),
@@ -38,6 +40,63 @@ class AppTheme {
     900: Color(0xFF111827),
   });
 
+  static final TextTheme _textTheme = TextTheme(
+    headline1: TextStyle(
+      color: textSwatch.shade700,
+      fontWeight: FontWeight.w300,
+      fontFamily: _primaryFont,
+    ),
+    headline2: TextStyle(
+      color: textSwatch.shade600,
+      fontFamily: _primaryFont,
+    ),
+    headline3: TextStyle(
+      color: textSwatch.shade700,
+      fontFamily: _primaryFont,
+    ),
+    headline4: TextStyle(
+      color: textSwatch.shade700,
+      fontFamily: _primaryFont,
+    ),
+    headline5: TextStyle(
+      color: textSwatch.shade600,
+      fontFamily: _primaryFont,
+    ),
+    headline6: TextStyle(
+      color: textSwatch.shade700,
+      fontFamily: _primaryFont,
+    ),
+    subtitle1: TextStyle(
+      color: textSwatch.shade700,
+      fontFamily: _primaryFont,
+    ),
+    subtitle2: TextStyle(
+      color: textSwatch.shade600,
+      fontFamily: _primaryFont,
+    ),
+    bodyText1: TextStyle(
+      color: textSwatch.shade700,
+      fontFamily: _primaryFont,
+    ),
+    bodyText2: TextStyle(
+      color: textSwatch.shade800,
+      fontFamily: _primaryFont,
+    ),
+    button: TextStyle(
+      color: textSwatch.shade500,
+      fontFamily: _primaryFont,
+    ),
+    caption: TextStyle(
+      color: textSwatch.shade500,
+      fontFamily: _primaryFont,
+    ),
+    overline: TextStyle(
+      color: textSwatch.shade500,
+      fontFamily: _primaryFont,
+    ),
+    
+  );
+
   static final _lightTheme = ThemeData(
     primarySwatch: primarySwatch,
     brightness: Brightness.light,
@@ -47,48 +106,7 @@ class AppTheme {
     bottomAppBarColor: Colors.white,
     dividerColor: const Color(0x1C000000),
     fontFamily: Constants.DEFAULT_FONT,
-    textTheme: TextTheme(
-      headline1: TextStyle(
-        color: textSwatch.shade700,
-        fontWeight: FontWeight.w300,
-      ),
-      headline2: TextStyle(
-        color: textSwatch.shade600,
-      ),
-      headline3: TextStyle(
-        color: textSwatch.shade700,
-      ),
-      headline4: TextStyle(
-        color: textSwatch.shade700,
-      ),
-      headline5: TextStyle(
-        color: textSwatch.shade600,
-      ),
-      headline6: TextStyle(
-        color: textSwatch.shade700,
-      ),
-      subtitle1: TextStyle(
-        color: textSwatch.shade700,
-      ),
-      subtitle2: TextStyle(
-        color: textSwatch.shade600,
-      ),
-      bodyText1: TextStyle(
-        color: textSwatch.shade700,
-      ),
-      bodyText2: TextStyle(
-        color: textSwatch.shade500,
-      ),
-      button: TextStyle(
-        color: textSwatch.shade500,
-      ),
-      caption: TextStyle(
-        color: textSwatch.shade500,
-      ),
-      overline: TextStyle(
-        color: textSwatch.shade500,
-      ),
-    ),
+    textTheme: _textTheme,
   );
 
   static final _darkTheme = _lightTheme.copyWith(
@@ -98,7 +116,12 @@ class AppTheme {
     cardColor: const Color(0xFF2f2f34),
     bottomAppBarColor: const Color(0xFF35353a),
     dividerColor: const Color(0x1CFFFFFF),
-    textTheme: _lightTheme.textTheme.apply(fontFamily: Constants.DEFAULT_FONT),
+    textTheme: _textTheme.copyWith(
+      bodyText2: TextStyle(
+        color: textSwatch.shade200,
+        fontFamily: Constants.DEFAULT_FONT,
+      ),
+    ),
   );
 
   ThemeData getAppThemeData(BuildContext context, bool isDarkModeEnabled) {
