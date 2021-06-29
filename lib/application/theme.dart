@@ -94,7 +94,6 @@ class AppTheme {
       color: textSwatch.shade500,
       fontFamily: _primaryFont,
     ),
-    
   );
 
   static final _lightTheme = ThemeData(
@@ -129,5 +128,3 @@ class AppTheme {
   }
 }
 /* AppTheme Notifier */
-
-
