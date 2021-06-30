@@ -17,6 +17,20 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
+### Update dependencies
+# flutter pub outdated
+# flutter pub upgrade
+
+### Analyze and format code
+# flutter format .
+# flutter analyze
+
+### Organize imports
+# flutter pub run import_sorter:main
+
+### Build classes
+# flutter pub run build_runner build --delete-conflicting-outputs
+
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
