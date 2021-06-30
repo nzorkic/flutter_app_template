@@ -5,14 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:template_app/application/config/app_constants.dart';
 
 // Project imports:
-import 'package:template_app/application/config/app_constants.dart';
 import 'package:template_app/application/logging/log_pens.dart';
 import 'package:template_app/application/logging/logger_types.dart';
 import 'package:template_app/providers.dart';
-import 'package:template_app/ui/widgets/settings_tile.dart';
-import 'package:template_app/utils/locale_utils.dart';
+import 'package:template_app/ui/widgets/settings_screen/drop_down_selector.dart';
+import 'package:template_app/ui/widgets/settings_screen/settings_tile.dart';
+import 'package:template_app/ui/widgets/settings_screen/theme_toggle.dart';
 
 class SettingsScreen extends ConsumerWidget with UiLogger {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -23,43 +24,14 @@ class SettingsScreen extends ConsumerWidget with UiLogger {
     final _appThemeStateProvider = context.read(appThemeStateProvider.notifier);
     final _localeStateProvider = context.read(localeStateProvider.notifier);
 
+    final String _currentLocale = watch(localeStateProvider);
     final bool _isDarkMode = watch(appThemeStateProvider);
 
-    var _themeSwitch = Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(
-          _isDarkMode ? Icons.dark_mode : Icons.light_mode,
-          color: Colors.yellow[700],
-        ),
-        Switch(
-          value: _isDarkMode,
-          onChanged: (val) => _appThemeStateProvider.toggleAppTheme(context),
-        ),
-      ],
-    );
+    void _changeLocale(String val) =>
+        _localeStateProvider.changeLocale(context, val.toString());
 
-    final String _currentLocale = watch(localeStateProvider);
-
-    var _localeSelector = DropdownButton(
-      value: Constants.LOCALES[_currentLocale],
-      icon: const Icon(Icons.arrow_downward),
-      dropdownColor: Theme.of(context).backgroundColor,
-      items: LocaleUtils.getLocaleNames().map(
-        (String lang) {
-          return DropdownMenuItem(
-            child: Text(
-              lang,
-              style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText2!.color),
-            ),
-            value: lang,
-          );
-        },
-      ).toList(),
-      onChanged: (val) =>
-          _localeStateProvider.changeLocale(context, val.toString()),
-    );
+    void _toggleTheme(BuildContext ctx) =>
+        _appThemeStateProvider.toggleAppTheme(ctx);
 
     return Scaffold(
       appBar: AppBar(
@@ -73,12 +45,19 @@ class SettingsScreen extends ConsumerWidget with UiLogger {
         children: [
           SettingTile(
             leadingText: tr('dark_mode'),
-            trailingWidget: _themeSwitch,
+            trailingWidget: ThemeToggle(
+              isDarkMode: _isDarkMode,
+              onChangedFn: _toggleTheme,
+            ),
           ),
           SettingTile(
             leadingText: tr('language'),
-            trailingWidget: _localeSelector,
-          )
+            trailingWidget: DropDownSelector(
+              value: Constants.LOCALES[_currentLocale]!,
+              items: Constants.LOCALES.values.toList(),
+              onChangeFn: _changeLocale,
+            ),
+          ),
         ],
       ),
     );
