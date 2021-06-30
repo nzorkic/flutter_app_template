@@ -20,7 +20,7 @@ class SettingsScreen extends ConsumerWidget with UiLogger {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    logger.info(penInfo('Build started...'));
+    logger.info(penInfo('Building SettingsScreen...'));
     final _appThemeStateProvider = context.read(appThemeStateProvider.notifier);
     final _localeStateProvider = context.read(localeStateProvider.notifier);
 

@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget with UiLogger {
 
   @override
   Widget build(BuildContext context) {
-    logger.info(penInfo('Build started...'));
+    logger.info(penInfo('Building HomeScreen...'));
     return Scaffold(
       appBar: AppBar(
         title: Text(tr('homepage_title')),
