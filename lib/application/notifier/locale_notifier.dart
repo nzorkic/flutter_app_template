@@ -29,6 +29,7 @@ class LocaleNotifier extends StateNotifier<String> with UtilityLogger {
             logger.info(penInfo('Locale changed to $_localeCode')),
           },
         )
-        .onError((error, stackTrace) => logger.warning(penWarning('Failed to change app theme')));
+        .onError((error, stackTrace) =>
+            logger.warning(penWarning('Failed to change app theme')));
   }
 }

@@ -50,7 +50,8 @@ class SettingsScreen extends ConsumerWidget with UiLogger {
           return DropdownMenuItem(
             child: Text(
               lang,
-              style: TextStyle(color: Theme.of(context).textTheme.bodyText2!.color),
+              style: TextStyle(
+                  color: Theme.of(context).textTheme.bodyText2!.color),
             ),
             value: lang,
           );

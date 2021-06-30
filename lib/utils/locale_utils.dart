@@ -9,8 +9,8 @@ import 'package:template_app/providers.dart';
 class LocaleUtils {
   LocaleUtils._();
 
-  static final String _fallbackLanguage = Constants.FALLBACK_LANGUAGE;
-  static final Map<String, String> _localesMap = Constants.LOCALES;
+  static const String _fallbackLanguage = Constants.FALLBACK_LANGUAGE;
+  static const Map<String, String> _localesMap = Constants.LOCALES;
 
   static List<String> getLocaleNames() {
     return _localesMap.values.toList();
